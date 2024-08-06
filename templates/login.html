@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='universal_styles.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Login Form</h2>
+        <form id="login-form" action="/login" method="POST" class="split-form">
+            <div class="form-column">
+                <label for="username" class="ilabel">Username:</label>
+                <br>
+                <label for="password" class="ilabel">Password:</label>
+                <br>
+            </div>
+            <div class="form-column">
+                <input type="text" id="username" name="username" class="forminput">
+                <br>
+                <input type="password" id="password" name="password" class="forminput">
+                <br>
+            </div>
+            <br>
+            <input type="submit" value="Login" class="submitdatabutton">
+            <br>
+            <button class="submitdatabutton" onclick="window.location.href='/register'">Register Instead</button>
+        </form>
+    </div>
+    
+    
+    <p id="login-message"></p>
+    
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            
+            fetch('/login', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => response.json())
+            .then(data => {
+                
+                // Set cookies
+
+                if (data.success==true){
+                    
+                    // const loginMessage = document.getElementById('login-message');
+                    // loginMessage.textContent = "Welcome, " + data.username; // Display username
+                    document.cookie = "login=true; path=/";
+                    document.cookie = "username=" + data.username + "; path=/";
+                    window.location.href = '/';
+                }
+                else{
+                    alert("Invalid Username or password");
+                    // const loginMessage = document.getElementById('login-message');
+                    // loginMessage.textContent = "Incorrect password or username, ";
+
+                }
+            });
+        });
+    </script>
+</body>
+</html>

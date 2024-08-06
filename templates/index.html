@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> -->
+
+    <title>AI Thumbnail Generator</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+
+
+    <!-- Additional CSS Files -->
+    <!-- <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/> -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-cyborg-gaming.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    
+
+    <style>
+
+
+      h1 {
+          color: #007bff;
+      }
+
+      #myform {
+          max-width: 400px;
+          margin: 20px auto;
+          background-color: #1e2021;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .ilabel {
+          display: block;
+          margin-bottom: 8px;
+          color: #ffffff;
+      }
+
+      .forminput {
+          
+          padding: 8px;
+          margin-bottom: 16px;
+          border: 1px solid #ced4da;
+          border-radius: 4px;
+      }
+
+      .promptbutton {
+          background-color: #e85f8f;
+          color: #ffffff;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+
+      #displaydata {
+          margin-top: 20px;
+          font-weight: bold;
+          color: #495057;
+      }
+
+      #resultImage   {
+          max-width: 100%;
+          height: auto;
+          margin-top: 20px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      #masterlayout {
+          display: grid;
+          grid-template-columns: 1fr 1fr; 
+          gap: 20px; 
+      }
+
+      #left-div {
+          background-color: lightblue;
+          padding: 20px;
+      }
+
+      #right-div {
+          background-color: lightgreen;
+          padding: 20px;
+      }
+      h1{
+          display: flex;
+          justify-content: center;
+      }
+  </style>
+
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <!-- <img src="{{ url_for('static', filename='assets/images/logo.png') }}" alt=""> -->
+                        <p></p>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Search End ***** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Search End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{{ url_for('index') }}" class="active">Home</a></li>
+                        <li><a href="#" onclick="logout()">Logout</a></li>
+                        <!-- <li><a href="browse.html">Browse</a></li>
+                        <li><a href="details.html">Details</a></li>
+                        <li><a href="streams.html">Streams</a></li>
+                        <li><a href="streams.html">Streams </a></li> -->
+                        <li><a href="#" ><span id="profilename">Profile</span> <img src="{{ url_for('static', filename='assets/images/profile-header.jpg') }}" alt=""></a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+
+          <!-- ***** Banner Start ***** -->
+          <div class="main-banner">
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="header-text">
+                  <h6>Welcome!</h6>
+                  <h4><em>Create</em> Your Thumbnails here</h4>
+                  <div class="main-button">
+                    <a href="#masterlayout">Create</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Banner End ***** -->
+
+          <!-- ***** Most Popular Start ***** -->
+          <div class="most-popular">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="heading-section">
+                  <h4>Sample Images</h4>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                      <img src="{{ url_for('static', filename='assets/images/a_cute_cat_v2.png') }}" alt="">
+                      <h4>A cute cat<br></h4>                      
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                      <img src="{{ url_for('static', filename='assets/images/football.png') }}" alt="">
+
+                      <h4>A cat playing ball<br></h4>    
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                      <img src="{{ url_for('static', filename='assets/images/download.png') }}" alt="">
+
+                      <h4>A mountain<br></h4>    
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                      <img src="{{ url_for('static', filename='assets/images/landscape.png') }}" alt="">
+
+                      <h4>A landscape<br></h4>    
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-12">
+                    <div class="main-button">
+                      <a href="#masterlayout">Create Your Own</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Most Popular End ***** -->
+            
+          <!-- ***** Gaming Library Start ***** -->
+          <div class="gaming-library">
+            <div class="col-lg-12">
+              <div class="heading-section">
+                <h4>Create your own image</h4>
+              </div>
+              
+              <div id="masterlayout">
+
+                <div id="leftdiv">
+                    
+                    <form id="myForm">
+                        <label for="input_data" class="ilabel">Enter brief description of the image:</label>
+                        <input class="forminput" type="text" id="input_data" required placeholder="E.g. A cat on a couch">
+                        <br>
+                        <label for="image_quality" class="ilabel">Image Quality (1-100):</label>
+                        <input class="forminput" type="text" id="image_quality" name="image_quality" required>
+                        <br>
+                        <label for="load_upsample" class="ilabel">Load 256x256:</label>
+                        <input class="forminput" type="checkbox" id="load_upsample" name="load_upsample">
+                        <br>
+                        <button class="promptbutton" type="button" onclick="submitForm()">Generate</button>
+                    </form>
+                </div>
+                
+                <div id="rightdiv">
+                    
+                    <p id="displayData"></p>
+                    <img id="resultImage" src="" alt="Rendered Image" hidden="true">
+                </div>
+            </div>
+            </div>
+          </div>
+          <!-- ***** Gaming Library End ***** -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script >
+    profiletext = document.getElementById("profilename");
+    function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+    // Usage example: Get the value of the 'username' cookie
+    const username = getCookie('username');
+    console.log(username); // Display the value of the 'username' cookie
+
+    if(username=="null" || username==null){
+      profiletext.innerText="Profile";
+    }
+    else{
+      profiletext.innerText=username;
+
+    }
+
+
+    function logout() {
+        // Set cookies for login status and username
+        document.cookie = "login=false; path=/";
+        document.cookie = "username=null; path=/";
+        
+        // Redirect to the login page
+        window.location.href = '/login';
+    }
+    function checkLoginStatus() {
+        var cookies = document.cookie.split(';');
+        var loggedIn = false;
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.startsWith("login=")) {
+                loggedIn = cookie.substring("login=".length) === "true";
+                break;
+            }
+        }
+        console.log(loggedIn);
+        return loggedIn;
+    }
+    function submitForm() {
+      if(checkLoginStatus()){
+        console.log("login");
+        
+        var inputData = document.getElementById('input_data').value;
+        var imageQuality = document.getElementById('image_quality').value;
+        var loadUpsample = document.getElementById('load_upsample').checked;
+        console.log(loadUpsample)
+        // Use AJAX to submit data to the server
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/submit", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById('displayData').innerText = "This might take a few minutes";
+                renderImage();
+            }
+        };
+        xhr.send("input_data=" + inputData + "&image_quality=" + imageQuality + "&load_upsample=" + loadUpsample);
+      }
+      else{
+        console.log("not login")
+        window.location.href = '/login';
+      }
+        
+    }
+
+    function renderImage() {
+        document.getElementById('resultImage').src = '/start_render';
+        document.getElementById('resultImage').hidden = false;
+    }
+</script>
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/isotope.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/owl-carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/tabs.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/popup.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+
+
+
+  </body>
+
+</html>

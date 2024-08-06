@@ -1,0 +1,46 @@
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #1e2021;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(235, 230, 230, 0.3);
+    color: #ffffff;
+    font-size: 120%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container h2 {
+    text-align: center;
+}
+
+#myForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.ilabel {
+    margin-bottom: 8px;
+}
+
+.forminput {
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.submitdatabutton {
+    grid-column: span 2; /* Make the button span across both columns */
+    background-color: #e85f8f;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
