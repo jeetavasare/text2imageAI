@@ -40,10 +40,14 @@ A text to image generator with Open-AI's glide model allows users to generate th
 2. **Generate Image**
    - In the Prompt field give a clear description of the image you want
    - In the qulity field give the quality if the image
-  > [!NOTE]
-      The quality is not the quality of the image file iteself rather a model parameter that controls not only quality but also the accuracy of the generated image.
-      You can pass values of above 100 to get even sharper images but above 100 the image quality has little to no difference. MAX VALUE is 1000
-   - By default the output of the image will be a 64x64 image
-   - Check the `Load 256x256` image to generate a higher resolution image (This can take upto 3 times as long on the same quality)
+  > [!IMPORTANT]
+  >    - The quality is not the quality of the image file iteself rather a model parameter that controls not only quality but also the accuracy of the generated image.  
+  >    - You can pass values of above 100 to get even sharper images but above 100 the image quality has little to no difference. MAX VALUE is 1000  
+  >    - By default the output of the image will be a 64x64 image  
+  >    - Check the `Load 256x256` image to generate a higher resolution image (This can take upto 3 times as long on the same quality)
+
+<br>  
+
+> [!NOTE]
 > If the model is run for the first time it needs to download 3GB of model file, this could take a very long time(2hrs+)
 > This issue is not related to the user but the server hosting the model. So even if you have good internet connection it will take quite a long time
