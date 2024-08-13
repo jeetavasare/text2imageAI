@@ -30,18 +30,18 @@ A text to image generator with Open-AI's glide model allows users to generate th
   
 4. **Run the `text2im.ipynb`**  
   - Open Jupyter notebook locate the file `text2im.ipynb` and run it
-    - Alternatively you install Visual Studio Code with Jupyter Notebook extension connect to the notebook kernel and run it from there
+    - Alternatively you can install Visual Studio Code with Jupyter Notebook extension connect to the notebook kernel and run it from there
   - In the output content locate the link `http://127.0.0.1:5000` and open it in a browser (most mordern browsers are supported)
 
 ## Usage
 1. **Register**
-    - Assuming a first time usage Click on the profile icon and click on  Register Instead
+    - Assuming a first time usage Click on the profile icon and click on **Register** Instead
     - Set you username and password
 2. **Generate Image**
    - In the Prompt field give a clear description of the image you want
-   - In the qulity field give the quality if the image
+   - In the quality field give the quality if the image
   > [!IMPORTANT]
-  >    - The quality is not the quality of the image file iteself rather a model parameter that controls not only quality but also the accuracy of the generated image.  
+  >    - The quality field does not represent the quality of the image file iteself rather a model parameter that controls not only quality but also the accuracy of the generated image.  
   >    - You can pass values of above 100 to get even sharper images but above 100 the image quality has little to no difference. MAX VALUE is 1000  
   >    - By default the output of the image will be a 64x64 image  
   >    - Check the `Load 256x256` image to generate a higher resolution image (This can take upto 3 times as long on the same quality)
