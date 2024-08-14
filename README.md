@@ -1,5 +1,5 @@
 # text2imageAI
-A text to image generator with Open-AI's glide model allows users to generate their thumbnials and other media assets without any technical requirements and worrying about infringing copyright's
+A text to image generator with Open-AI's glide model allows users to generate their thumbnails and other media assets without any technical requirements and worrying about infringing copyright's
 
 ## Requirements
   - CPU
@@ -36,7 +36,7 @@ A text to image generator with Open-AI's glide model allows users to generate th
 ## Usage
 1. **Register**
     - Assuming a first time usage Click on the profile icon and click on **Register** Instead
-    - Set you username and password
+    - Set your username and password
 2. **Generate Image**
    - In the Prompt field give a clear description of the image you want
    - In the quality field give the quality if the image
